@@ -1,3 +1,5 @@
+const VERSION = 0.1;
+
 self.addEventListener('activate', event => {
   console.log("Updating offline cache");
   event.waitUntil(
