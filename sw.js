@@ -34,9 +34,9 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  console.log(new URL(event.request.url).pathname);
   if (new URL(event.request.url).pathname == "/version") {
-    return new Response(VERSION);
+    event.respondWith(new Response(VERSION));
+    return;
   }
   event.respondWith(
     // If the file is cached, use the cached version to fulfil the request
