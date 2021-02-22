@@ -9,9 +9,12 @@
 
   <link rel="manifest" href="affectivestate.webmanifest"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/Dogfalo/materialize/v1-dev/extras/noUiSlider/nouislider.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/Dogfalo/materialize/v1-dev/extras/noUiSlider/nouislider.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>
@@ -26,14 +29,43 @@
   <h1>Affective State Profiler</h1>
 
   <div id="main-menu">
-    <a class="waves-effect waves-light btn"><i class="fas fa-edit"></i> Record State</a>
-    <a class="waves-effect waves-light btn"><i class="fas fa-table"></i> State Summary</a>
-    <a class="waves-effect waves-light btn"><i class="fas fa-chart-line"></i> State Visualization</a>
+    <a class="red darken-2 waves-effect waves-light btn modal-trigger" href="#record"><i class="fas fa-edit"></i> Record State</a>
+    <a class="red lighten-1 waves-effect waves-light btn modal-trigger" href="#summary"><i class="fas fa-table"></i> State Summary</a>
+    <a class="red lighten-1 waves-effect waves-light btn modal-trigger" href="#chart"><i class="fas fa-chart-line"></i> State Visualization</a>
   </div>
 
-  <div>
+  <div id="footer">
     App Icon made by <a href="https://www.flaticon.com/authors/darius-dan" title="Darius Dan" target="_blank">Darius Dan</a>
     from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a>
+  </div>
+
+  <div id="record" class="modal">
+    <div class="modal-content">
+      <h4>Record Affective State</h4>
+      <div class="input-field">
+        <label for="name">Event Name</label>
+        <input type="text" id="eventName">
+      </div>
+      
+      <div class="input-field">
+        Valence Level (pleasantness)
+        <div id="valence"></div>
+      </div>
+      
+      <div class="input-field">
+        Arousal Level (mental activation)
+        <div id="arousal"></div>
+      </div>
+
+      <div class="input-field">
+        <label for="details">Event details</label>
+        <textarea id="details" class="materialize-textarea" placeholder="What was the nature of the event? What activities were involved? What level of social interaction was involved?"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#!" class="red lighten-1 modal-close waves-effect waves-light btn">Submit</a>
+    </div>
   </div>
 </body>
 
