@@ -54,3 +54,7 @@ h1 {
 #record.modal .modal-content {
     overflow-x: hidden;
 }
+
+#details {
+    min-height: 100px;
+}
