@@ -3,22 +3,33 @@
 
 <head>
   <title>Affective State Profiler</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" sizes="192x192" href="icons/icon-192.png">
-  <meta name="theme-color" content="#ef0026">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" sizes="192x192" href="icons/icon-192.png"/>
+  <meta name="theme-color" content="#ef0026"/>
 
-  <link rel="manifest" href="affectivestate.webmanifest">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="manifest" href="affectivestate.webmanifest"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js"></script>
 
   <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
-  <a class="waves-effect waves-light btn">Start</a>
-  <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Test</a>
+  <img id="icon" src="icons/icon-192.png">
+
+  <h1>Affective State Profiler</h1>
+
+  <div id="main-menu">
+    <a class="waves-effect waves-light btn"><i class="fas fa-edit"></i> Record State</a>
+    <a class="waves-effect waves-light btn"><i class="fas fa-table"></i> State Summary</a>
+    <a class="waves-effect waves-light btn"><i class="fas fa-chart-line"></i> State Visualization</a>
+  </div>
 
   <div>
     App Icon made by <a href="https://www.flaticon.com/authors/darius-dan" title="Darius Dan" target="_blank">Darius Dan</a>

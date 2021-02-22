@@ -1,0 +1,39 @@
+html {
+    border: solid #ef0026 50px;
+    min-height: 100%;
+}
+
+body {
+    min-height: calc(100vh - 40px);
+    border: solid white 40px;
+    border-radius: 30px;
+    margin: -30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#icon {
+    width: 150px;
+    max-width: 100%;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 10vw;
+    }
+}
+
+#main-menu {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
