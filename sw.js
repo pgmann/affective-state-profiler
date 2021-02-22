@@ -1,7 +1,7 @@
 // The cache will only be updated when this serviceworker file has changes (see 'activate' event).
 // Changing this version number is an easy way to trigger a cache update since this file will have
 // changes.
-const VERSION = '0.1.2';
+const VERSION = '0.1.3';
 
 self.addEventListener('install', event => {
   // When a new version is installed, normally a serviceworker
@@ -34,6 +34,9 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  if (event.request.url.endswith("/version")) {
+    return new Response(VERSION);
+  }
   event.respondWith(
     // If the file is cached, use the cached version to fulfil the request
     // (cache-first strategy, falling back to network if not found)

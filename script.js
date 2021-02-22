@@ -33,4 +33,7 @@ if ('serviceWorker' in navigator) {
   // Register the serviceworker - allows offline access, client-side caching, etc
   // also required by Chrome to allow a PWA to be installed
   navigator.serviceWorker.register('/sw.js').then(() => console.log("Registered sw.js"));
+
+  // Get current serviceworker version
+  version.innerText = $.get("/version");
 }
