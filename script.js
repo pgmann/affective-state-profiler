@@ -27,6 +27,9 @@ $(() => {
       from: value => Number(value)
     }
   });
+  
+  // Get current serviceworker version
+  $.get("/version", data => version.innerText = data);
 });
 
 if ('serviceWorker' in navigator) {
@@ -34,6 +37,4 @@ if ('serviceWorker' in navigator) {
   // also required by Chrome to allow a PWA to be installed
   navigator.serviceWorker.register('/sw.js').then(() => console.log("Registered sw.js"));
 
-  // Get current serviceworker version
-  version.innerText = $.get("/version");
 }
