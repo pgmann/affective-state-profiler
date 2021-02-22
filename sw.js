@@ -34,6 +34,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  console.log(new URL(event.request.url).pathname);
   if (new URL(event.request.url).pathname == "/version") {
     return new Response(VERSION);
   }
