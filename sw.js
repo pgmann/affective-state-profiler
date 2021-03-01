@@ -1,7 +1,7 @@
 // The cache will only be updated when this serviceworker file has changes (see 'activate' event).
 // Changing this version number is an easy way to trigger a cache update since this file will have
 // changes.
-const VERSION = 'v0.1.7';
+const VERSION = 'v0.1.8';
 
 self.addEventListener('install', event => {
   // When a new version is installed, normally a serviceworker
@@ -23,7 +23,8 @@ self.addEventListener('activate', event => {
           '/style.css',
           '/icons/icon-32.png',
           '/icons/icon-192.png',
-          '/icons/icon-512.png'
+          '/icons/icon-512.png',
+          '/affectivestate.webmanifest'
         ]);
       }),
       // Make sure all tabs go through this serviceworker
