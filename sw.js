@@ -21,6 +21,8 @@ self.addEventListener('activate', event => {
           '/',
           '/script.js',
           '/style.css',
+          '/lib/nouislider.min.js',
+          '/lib/nouislider.css',
           '/icons/icon-32.png',
           '/icons/icon-192.png',
           '/icons/icon-512.png',
