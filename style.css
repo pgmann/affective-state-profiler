@@ -44,11 +44,11 @@ h1 {
 }
 
 /* make the range slider tooltips emoji larger */
-.noUi-tooltip span {
+/* .noUi-tooltip span {
     font-size: 20px;
     top: -2px;
     left: 1px;
-}
+} */
 
 /* don't show scrollbars when the slider tooltip is at the max value */
 #record.modal .modal-content {
