@@ -19,31 +19,99 @@ $(() => {
   M.Modal.init(summary, {
     onOpenStart: () => {
       // load stats
-      var events = getAllEvents();
+      var events = getAllEvents().reverse();
       var avgValence = 0, avgArousal = 0, totalEvents = events.length;
-      for (let event of events) {
-        avgValence += event.valence;
-        avgArousal += event.arousal;
-        let row = summaryHistory.insertRow();
-        let date = new Date(event.time);
-        row.insertCell().innerText = date.toLocaleDateString() + " " + date.toLocaleTimeString();
-        row.insertCell().innerText = event.name;
-        row.insertCell().innerText = capitalise(categoriseAffectiveState(event.valence, event.arousal));
-        row.insertCell().innerText = event.valence;
-        row.insertCell().innerText = event.arousal;
-        row.insertCell().innerText = event.details;
-      }
-      avgValence /= totalEvents;
-      avgArousal /= totalEvents;
       summaryEventsTotal.innerText = totalEvents + " event" + (totalEvents == 1 ? "" : "s");
-      summaryValenceAvg.innerText = avgValence;
-      summaryArousalAvg.innerText = avgArousal;
-      summaryAffectiveStateAvg.innerText = categoriseAffectiveState(avgValence, avgArousal);
+      
+      // hide stats if there are no events yet
+      var noStatsYet = summaryAffectiveStateAvg.hidden = summaryHistory.hidden = events.length == 0;
+      if (!noStatsYet) {
+        // display details of each historical event in order
+        for (let event of events) {
+          avgValence += event.valence;
+          avgArousal += event.arousal;
+          let row = summaryHistory.insertRow();
+          let date = new Date(event.time);
+          row.insertCell().innerText = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+          row.insertCell().innerText = event.name;
+          row.insertCell().innerText = capitalise(categoriseAffectiveState(event.valence, event.arousal));
+          row.insertCell().innerText = event.details;
+        }
+        avgValence /= totalEvents;
+        avgArousal /= totalEvents;
+        summaryAffectiveStateAvgValue.innerText = categoriseAffectiveState(avgValence, avgArousal);
+      }
     },
     onCloseEnd: () => {
       for (let tr of document.querySelectorAll("#summaryHistory tr:not(:first-child)")) {
         tr.remove();
       }
+    }
+  });
+
+  M.Modal.init(chart, {
+    onOpenEnd: () => {
+      // load events
+      var events = getAllEvents(), dates = [], valences = [], arousals = [];
+      
+      for (let event of events) {
+        let date = new Date(event.time);
+        dates.push(date.toLocaleDateString() + " " + date.toLocaleTimeString());
+        valences.push(event.valence);
+        arousals.push(event.arousal);
+      }
+
+      myChart = new Chart(chartArea.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: dates,
+          datasets: [{
+            label: 'Valence',
+            data: valences,
+            backgroundColor: 'rgb(255, 99, 132)', // red
+            borderColor: 'rgb(255, 99, 132)', // red
+            fill: false
+          },
+          {
+            label: 'Arousal',
+            data: arousals,
+            backgroundColor: 'rgb(54, 162, 235)', // blue
+            borderColor: 'rgb(54, 162, 235)', // blue
+            fill: false
+          }]
+        },
+        options: {
+          tooltips: {
+            enabled: true,
+            mode: 'index',
+            intersect: false
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                min: -50,
+                max: 50
+              }
+            }]
+          },
+          plugins: {
+            zoom: {
+              pan: {
+                enabled: true,
+                mode: 'x',
+                overscaleMode: 'x'
+              },
+              zoom: {
+                enabled: true,
+                mode: 'x'
+              }
+            }
+          }
+        }
+      });
+    },
+    onCloseEnd: () => {
+      chartArea.innerHTML = "";
     }
   });
 

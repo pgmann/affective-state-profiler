@@ -80,3 +80,7 @@ h1 {
 #details {
     min-height: 100px;
 }
+
+#chartContainer {
+    /* width: 500px; */
+}

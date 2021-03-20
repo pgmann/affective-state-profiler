@@ -11,13 +11,15 @@
   <link rel="stylesheet" href="lib/nouislider.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.css" integrity="sha512-V0+DPzYyLzIiMiWCg3nNdY+NyIiK9bED/T1xNBj08CaIUyK3sXRpB26OUCIzujMevxY9TRJFHQIxTwgzb0jVLg==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
   <script src="lib/nouislider.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" integrity="sha512-NiWqa2rceHnN3Z5j6mSAvbwwg3tiwVNxiAQaaSMSXnRRDh5C2mk/+sKQRw8qjV1vN4nf8iK2a0b048PnHbyx+Q==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js" integrity="sha512-9rxMbTkN9JcgG5euudGbdIbhFZ7KGyAuVomdQDI9qXfPply9BJh0iqA7E/moLCatH2JD4xBGHwV6ezBkCpnjRQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js" integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.7.7/chartjs-plugin-zoom.min.js" integrity="sha512-8E9fPF4pjWxI0dpprpn4WYeciAMo2kh6xN0COFxvTfurMttjZzih/sBp+Fxu49Zr6IUSp4sqWY6KLecnqOCwxA==" crossorigin="anonymous"></script>
 
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css"/>
@@ -31,7 +33,7 @@
   <div id="main-menu">
     <a class="red darken-2 waves-effect waves-light btn modal-trigger" href="#record"><i class="fas fa-edit"></i> Record State</a>
     <a class="red lighten-1 waves-effect waves-light btn modal-trigger" href="#summary"><i class="fas fa-table"></i> State Summary</a>
-    <a class="red lighten-1 waves-effect waves-light btn modal-trigger" href="#chart"><i class="fas fa-chart-line"></i> State Visualization</a>
+    <a class="red lighten-1 waves-effect waves-light btn modal-trigger" href="#chart"><i class="fas fa-chart-line"></i> State Visualisation</a>
   </div>
 
   <div id="footer">
@@ -74,16 +76,30 @@
     <div class="modal-content">
       <h4>Affective State Summary</h4>
       
-      <div id="summaryStats">
-        You have logged a total of <span id="summaryEventsTotal"></span>.<br>
-        Average valence (pleasantness): <span id="summaryValenceAvg"></span><br>
-        Average arousal (mental activation): <span id="summaryArousalAvg"></span><br>
-        You normally feel <span id="summaryAffectiveStateAvg"></span>.
-      </div>
+      You have logged a total of <span id="summaryEventsTotal"></span>.
+      <span id="summaryAffectiveStateAvg">
+        You normally feel <b><span id="summaryAffectiveStateAvgValue"></span></b>.
+      </span>
 
       <table id="summaryHistory">
-        <tr><th>Date/Time</th><th>Event Name</th><th>Feeling</th><th>Valence</th><th>Arousal</th><th>Details</th></tr>
+        <tr><th>Date/Time</th><th>Event Name</th><th>Affective State</th><th>Details</th></tr>
       </table>
+    </div>
+
+    <div class="modal-footer">
+      <a class="grey modal-close waves-effect waves-dark btn">Done</a>
+    </div>
+  </div>
+  
+  <div id="chart" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Affective State Visualisation</h4>
+
+      50 represents the most positive affective state while -50 represents the most negative.
+
+      <div id="chartContainer">
+        <canvas id="chartArea"></canvas>
+      </div>
     </div>
 
     <div class="modal-footer">
