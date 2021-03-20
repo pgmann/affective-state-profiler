@@ -50,6 +50,11 @@ h1 {
     left: 1px;
 } */
 
+.noUi-handle-touch-area {
+    /* fix for https://github.com/Dogfalo/materialize/issues/5337 */
+    z-index: 5;
+}
+
 /* don't show scrollbars when the slider tooltip is at the max value */
 #record.modal .modal-content {
     overflow-x: hidden;
