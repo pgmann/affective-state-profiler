@@ -65,11 +65,13 @@ h1 {
 }
 
 /* change toast position from top right to bottom left */
-#toast-container {
-    top: auto !important;
-    right: auto !important;
-    bottom: 10%;
-    left: 7%;
+@media (min-width: 601px) {
+    #toast-container {
+        top: auto !important;
+        right: auto !important;
+        bottom: 10%;
+        left: 7%;
+    }
 }
 
 /* don't show scrollbars when the slider tooltip is at the max value */
