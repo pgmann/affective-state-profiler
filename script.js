@@ -81,6 +81,7 @@ $(() => {
           }]
         },
         options: {
+          maintainAspectRatio: false,
           tooltips: {
             enabled: true,
             mode: 'index',
@@ -118,7 +119,7 @@ $(() => {
       });
     },
     onCloseEnd: () => {
-      chartArea.innerHTML = "";
+      chartContainer.innerHTML = '<canvas id="chartArea"></canvas>';
     }
   });
 

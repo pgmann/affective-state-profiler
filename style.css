@@ -80,3 +80,12 @@ h1 {
 #details {
     min-height: 100px;
 }
+
+#chart .modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#chartContainer {
+    flex: 1;
+}
