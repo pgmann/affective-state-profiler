@@ -1,7 +1,7 @@
 // The cache will only be updated when this serviceworker file has changes (see 'activate' event).
 // Changing this version number is an easy way to trigger a cache update since this file will have
 // changes.
-const VERSION = 'v0.1.25';
+const VERSION = 'v0.1.26';
 
 self.addEventListener('install', event => {
   // When a new version is installed, normally a serviceworker
@@ -16,7 +16,7 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     Promise.all(
       // Cache/update the source so it'll be available when offline
-      caches.open('affective-state-v1').then(cache => {
+      caches.delete('affective-state-v1').then(() => caches.open('affective-state-v1').then(cache => {
         return cache.addAll([
           // internal scripts
           '/',
@@ -58,7 +58,7 @@ self.addEventListener('activate', event => {
       // to ensure the latest version is used everywhere
       clients.claim()
     )
-  );
+  ));
 });
 
 self.addEventListener('fetch', event => {
