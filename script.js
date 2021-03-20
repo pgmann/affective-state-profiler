@@ -99,11 +99,18 @@ $(() => {
               pan: {
                 enabled: true,
                 mode: 'x',
-                overscaleMode: 'x'
+                speed: 10,
+                onPan: () => {
+                  myChart.options.tooltips.enabled = false;
+                },
+                onPanComplete: () => {
+                  myChart.options.tooltips.enabled = true;
+                }
               },
               zoom: {
                 enabled: true,
-                mode: 'x'
+                mode: 'x',
+                speed: 0.05
               }
             }
           }
