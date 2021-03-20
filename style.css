@@ -55,6 +55,14 @@ h1 {
     z-index: 5;
 }
 
+.noUi-target {
+    margin: 10px 0;
+}
+
+.noUi-container {
+    padding-bottom: 1px;
+}
+
 /* don't show scrollbars when the slider tooltip is at the max value */
 #record.modal .modal-content {
     overflow-x: hidden;
