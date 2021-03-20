@@ -9,6 +9,11 @@ self.addEventListener('install', event => {
   // Since this service worker isn't very complex,
   // it's fine to activate any new serviceworker version immediately.
   self.skipWaiting();
+
+  event.registerForeignFetch({
+    scopes: [self.registration.scope],
+    origins: ['*']
+  })
 });
 
 self.addEventListener('activate', event => {
@@ -26,7 +31,14 @@ self.addEventListener('activate', event => {
           '/icons/icon-32.png',
           '/icons/icon-192.png',
           '/icons/icon-512.png',
-          '/affectivestate.webmanifest'
+          '/affectivestate.webmanifest',
+          'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css',
+          'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.css',
+          'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js'
         ]);
       }),
       // Make sure all tabs go through this serviceworker
