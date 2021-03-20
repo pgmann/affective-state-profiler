@@ -55,12 +55,21 @@ h1 {
     z-index: 5;
 }
 
+/* range slider spacing */
 .noUi-target {
     margin: 10px 0;
 }
 
 .noUi-container {
     padding-bottom: 1px;
+}
+
+/* change toast position from top right to bottom left */
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left: 7%;
 }
 
 /* don't show scrollbars when the slider tooltip is at the max value */

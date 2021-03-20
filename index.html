@@ -44,8 +44,8 @@
     <div class="modal-content">
       <h4>Record Affective State</h4>
       <div class="input-field">
-        <label for="name">Event Name</label>
-        <input type="text" id="eventName">
+        <label for="eventName">Event Name</label>
+        <input type="text" id="eventName" class="validate" required="required">
       </div>
       
       <div class="noUi-container">
@@ -65,7 +65,29 @@
     </div>
 
     <div class="modal-footer">
-      <a href="#!" class="red lighten-1 modal-close waves-effect waves-light btn">Submit</a>
+      <a class="grey modal-close waves-effect waves-dark btn">Cancel</a>
+      <a class="red lighten-1 waves-effect waves-light btn" id="recordSubmit">Submit</a>
+    </div>
+  </div>
+
+  <div id="summary" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Affective State Summary</h4>
+      
+      <div id="summaryStats">
+        You have logged a total of <span id="summaryEventsTotal"></span>.<br>
+        Average valence (pleasantness): <span id="summaryValenceAvg"></span><br>
+        Average arousal (mental activation): <span id="summaryArousalAvg"></span><br>
+        You normally feel <span id="summaryAffectiveStateAvg"></span>.
+      </div>
+
+      <table id="summaryHistory">
+        <tr><th>Date/Time</th><th>Event Name</th><th>Feeling</th><th>Valence</th><th>Arousal</th><th>Details</th></tr>
+      </table>
+    </div>
+
+    <div class="modal-footer">
+      <a class="grey modal-close waves-effect waves-dark btn">Done</a>
     </div>
   </div>
 </body>
