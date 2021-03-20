@@ -44,11 +44,11 @@ h1 {
 }
 
 /* make the range slider tooltips emoji larger */
-/* .noUi-tooltip span {
+.noUi-tooltip span {
     font-size: 20px;
     top: -2px;
     left: 1px;
-} */
+}
 
 .noUi-handle-touch-area {
     /* fix for https://github.com/Dogfalo/materialize/issues/5337 */
