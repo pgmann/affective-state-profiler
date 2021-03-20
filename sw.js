@@ -9,11 +9,6 @@ self.addEventListener('install', event => {
   // Since this service worker isn't very complex,
   // it's fine to activate any new serviceworker version immediately.
   self.skipWaiting();
-
-  event.registerForeignFetch({
-    scopes: [self.registration.scope],
-    origins: ['*']
-  })
 });
 
 self.addEventListener('activate', event => {
@@ -23,22 +18,38 @@ self.addEventListener('activate', event => {
       // Cache/update the source so it'll be available when offline
       caches.open('affective-state-v1').then(cache => {
         return cache.addAll([
+          // internal scripts
           '/',
           '/script.js',
           '/style.css',
-          '/lib/nouislider.min.js',
-          '/lib/nouislider.css',
           '/icons/icon-32.png',
           '/icons/icon-192.png',
           '/icons/icon-512.png',
           '/affectivestate.webmanifest',
+          // internal libraries
+          '/lib/nouislider.min.js',
+          '/lib/nouislider.css',
+          // external libraries
           'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css',
           'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.css',
           'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js'
+          'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.4/chartist.min.js',
+          // fontawesome fonts
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-regular-400.eot',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-regular-400.eot?#iefix',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-regular-400.woff2',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-regular-400.woff',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-regular-400.ttf',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-regular-400.svg#fontawesome',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.eot',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.eot?#iefix',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.woff2',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.woff',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.ttf',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.svg#fontawesome'
         ]);
       }),
       // Make sure all tabs go through this serviceworker
