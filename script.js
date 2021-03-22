@@ -151,7 +151,7 @@ $(() => {
   });
 
   // Show current serviceworker version in footer
-  $.get("/version", data => version.innerText = data);
+  $.get("/version", data => version.innerText = data + " -");
 
   // setup action handlers
   recordSubmit.addEventListener('click', event => {

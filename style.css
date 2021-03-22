@@ -14,6 +14,21 @@ body {
     gap: 20px;
 }
 
+* {
+    /* disable context menu and text selection when long pressing on text, images etc */
+	user-select: none;
+    /* disable dragging images around etc */
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+td {
+	user-select: text;
+}
+
 #logo {
     width: 150px;
     max-width: 100%;
