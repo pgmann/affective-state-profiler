@@ -1,5 +1,12 @@
 // wait for page to finish loading
 $(() => {
+  // prevent long-press context menu
+  window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+  };
+
   // setup modals
   M.Modal.init(record, {
     onOpenEnd: () => {
