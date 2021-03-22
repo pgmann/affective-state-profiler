@@ -14,7 +14,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   console.log("Updating offline cache");
   event.waitUntil(
-    Promise.all(
+    Promise.all([
       // Cache/update the source so it'll be available when offline
       caches.delete('affective-state-v1').then(() => caches.open('affective-state-v1')).then(cache => {
         return cache.addAll([
@@ -57,7 +57,7 @@ self.addEventListener('activate', event => {
       // Make sure all tabs go through this serviceworker
       // to ensure the latest version is used everywhere
       clients.claim()
-    )
+    ])
   );
 });
 
