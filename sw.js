@@ -16,7 +16,7 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     Promise.all(
       // Cache/update the source so it'll be available when offline
-      caches.delete('affective-state-v1').then(() => caches.open('affective-state-v1').then(cache => {
+      caches.delete('affective-state-v1').then(() => caches.open('affective-state-v1')).then(cache => {
         return cache.addAll([
           // internal scripts
           '/',
@@ -53,7 +53,7 @@ self.addEventListener('activate', event => {
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.ttf',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.svg#fontawesome'
         ]);
-      })),
+      }),
       // Make sure all tabs go through this serviceworker
       // to ensure the latest version is used everywhere
       clients.claim()
