@@ -53,12 +53,12 @@ self.addEventListener('activate', event => {
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.ttf',
           'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/webfonts/fa-solid-900.svg#fontawesome'
         ]);
-      }),
+      })),
       // Make sure all tabs go through this serviceworker
       // to ensure the latest version is used everywhere
       clients.claim()
     )
-  ));
+  );
 });
 
 self.addEventListener('fetch', event => {
